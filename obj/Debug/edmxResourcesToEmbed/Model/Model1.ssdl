@@ -1,0 +1,613 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Хранилище ComfortModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="DiscountPartners">
+    <Key>
+      <PropertyRef Name="Id_discount" />
+    </Key>
+    <Property Name="Id_discount" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_partner" Type="int" />
+    <Property Name="TotalSalesValue" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Discount" Type="decimal" Precision="3" Scale="2" />
+    <Property Name="CalculationDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id_employee" />
+    </Key>
+    <Property Name="Id_employee" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="text" />
+    <Property Name="Surname" Type="text" />
+    <Property Name="Patronumic" Type="text" />
+    <Property Name="Birthday" Type="date" />
+    <Property Name="PassportSeria" Type="text" />
+    <Property Name="PassportNumber" Type="text" />
+    <Property Name="BankDetails" Type="text" />
+    <Property Name="Id_family" Type="int" />
+    <Property Name="Id_health" Type="int" />
+    <Property Name="Id_role" Type="int" />
+  </EntityType>
+  <EntityType Name="FamilyStatus">
+    <Key>
+      <PropertyRef Name="Id_status" />
+    </Key>
+    <Property Name="Id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NmaeStatus" Type="text" />
+  </EntityType>
+  <EntityType Name="Health">
+    <Key>
+      <PropertyRef Name="Id_health" />
+    </Key>
+    <Property Name="Id_health" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameHealth" Type="text" />
+  </EntityType>
+  <EntityType Name="Logins">
+    <Key>
+      <PropertyRef Name="Id_login" />
+    </Key>
+    <Property Name="Id_login" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Login" Type="text" />
+    <Property Name="Password" Type="text" />
+    <Property Name="Id_user" Type="int" />
+  </EntityType>
+  <EntityType Name="Partners">
+    <Key>
+      <PropertyRef Name="Id_partner" />
+    </Key>
+    <Property Name="Id_partner" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NamePartner" Type="text" />
+    <Property Name="Id_type" Type="int" />
+    <Property Name="UrAdress" Type="text" />
+    <Property Name="INN" Type="text" />
+    <Property Name="SurnameDirector" Type="text" />
+    <Property Name="NameDirector" Type="text" />
+    <Property Name="PatronumicDirector" Type="text" />
+    <Property Name="Phone" Type="text" />
+    <Property Name="Email" Type="text" />
+    <Property Name="Logo" Type="text" />
+    <Property Name="Raiting" Type="decimal" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id_product" />
+    </Key>
+    <Property Name="Id_product" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Articul" Type="text" />
+    <Property Name="NameProduct" Type="text" />
+    <Property Name="Description" Type="text" />
+    <Property Name="MinPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Id_size" Type="int" />
+    <Property Name="WeightNETTO" Type="text" />
+    <Property Name="WeightBRUTTO" Type="text" />
+    <Property Name="CostPrice" Type="decimal" Precision="10" Scale="2" />
+    <Property Name="Id_type" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductsMaterial">
+    <Key>
+      <PropertyRef Name="Id_prodmaterial" />
+    </Key>
+    <Property Name="Id_prodmaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_material" Type="int" />
+    <Property Name="Id_product" Type="int" />
+  </EntityType>
+  <EntityType Name="ProductType">
+    <Key>
+      <PropertyRef Name="Id_prodtype" />
+    </Key>
+    <Property Name="Id_prodtype" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameProdType" Type="text" />
+    <Property Name="Coefficient" Type="text" />
+  </EntityType>
+  <EntityType Name="ProductWorkshop">
+    <Key>
+      <PropertyRef Name="Id_prodwork" />
+    </Key>
+    <Property Name="Id_prodwork" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_product" Type="int" />
+    <Property Name="Id_workshop" Type="int" />
+    <Property Name="TimeMake" Type="text" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Id_request" />
+    </Key>
+    <Property Name="Id_request" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_partner" Type="int" />
+    <Property Name="Manager" Type="int" />
+    <Property Name="RequestDate" Type="datetime" />
+    <Property Name="Id_status" Type="int" />
+    <Property Name="TotalAmountReq" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="RequestDetails">
+    <Key>
+      <PropertyRef Name="Id_detailsreq" />
+    </Key>
+    <Property Name="Id_detailsreq" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_request" Type="int" />
+    <Property Name="Id_product" Type="int" />
+    <Property Name="Quantity" Type="int" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id_role" />
+    </Key>
+    <Property Name="Id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameRole" Type="text" />
+  </EntityType>
+  <EntityType Name="SaleHistory">
+    <Key>
+      <PropertyRef Name="Id_sale" />
+    </Key>
+    <Property Name="Id_sale" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Id_product" Type="int" />
+    <Property Name="Quantity" Type="int" />
+    <Property Name="Id_point" Type="int" />
+    <Property Name="Amount" Type="decimal" Precision="10" Scale="2" />
+  </EntityType>
+  <EntityType Name="SalePoint">
+    <Key>
+      <PropertyRef Name="Id_point" />
+    </Key>
+    <Property Name="Id_point" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NamePoint" Type="text" />
+    <Property Name="AdressPoint" Type="text" />
+    <Property Name="Id_partner" Type="int" />
+  </EntityType>
+  <EntityType Name="SizeUpakovka">
+    <Key>
+      <PropertyRef Name="Id_size" />
+    </Key>
+    <Property Name="Id_size" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Width" Type="text" />
+    <Property Name="Height" Type="text" />
+    <Property Name="Length" Type="text" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id_status" />
+    </Key>
+    <Property Name="Id_status" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameStatus" Type="text" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="TypeMaterial">
+    <Key>
+      <PropertyRef Name="Id_type_material" />
+    </Key>
+    <Property Name="Id_type_material" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name_material" Type="text" />
+    <Property Name="LostProcent" Type="decimal" Precision="5" Scale="2" />
+  </EntityType>
+  <EntityType Name="TypeOfBusiness">
+    <Key>
+      <PropertyRef Name="Id_type" />
+    </Key>
+    <Property Name="Id_type" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameBusiness" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="TypeWorkshop">
+    <Key>
+      <PropertyRef Name="Id_type_workshop" />
+    </Key>
+    <Property Name="Id_type_workshop" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameTypeWorkshop" Type="text" />
+  </EntityType>
+  <EntityType Name="Workshop">
+    <Key>
+      <PropertyRef Name="Id_workshop" />
+    </Key>
+    <Property Name="Id_workshop" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NameWorkshop" Type="text" />
+    <Property Name="CountPeople" Type="int" />
+    <Property Name="Id_type" Type="int" />
+    <Property Name="Id_employee" Type="int" />
+  </EntityType>
+  <Association Name="FK_DiscountPartners_Partners">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DiscountPartners" Type="Self.DiscountPartners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="Id_partner" />
+      </Principal>
+      <Dependent Role="DiscountPartners">
+        <PropertyRef Name="Id_partner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_FamilyStatus">
+    <End Role="FamilyStatus" Type="Self.FamilyStatus" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FamilyStatus">
+        <PropertyRef Name="Id_status" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Id_family" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Health">
+    <End Role="Health" Type="Self.Health" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Health">
+        <PropertyRef Name="Id_health" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Id_health" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id_role" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Logins_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id_employee" />
+      </Principal>
+      <Dependent Role="Logins">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_TypeOfBusiness">
+    <End Role="TypeOfBusiness" Type="Self.TypeOfBusiness" Multiplicity="0..1" />
+    <End Role="Partners" Type="Self.Partners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfBusiness">
+        <PropertyRef Name="Id_type" />
+      </Principal>
+      <Dependent Role="Partners">
+        <PropertyRef Name="Id_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductType">
+    <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductType">
+        <PropertyRef Name="Id_prodtype" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Id_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_SizeUpakovka">
+    <End Role="SizeUpakovka" Type="Self.SizeUpakovka" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SizeUpakovka">
+        <PropertyRef Name="Id_size" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Id_size" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsMaterial_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductsMaterial" Type="Self.ProductsMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id_product" />
+      </Principal>
+      <Dependent Role="ProductsMaterial">
+        <PropertyRef Name="Id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsMaterial_TypeMaterial">
+    <End Role="TypeMaterial" Type="Self.TypeMaterial" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductsMaterial" Type="Self.ProductsMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeMaterial">
+        <PropertyRef Name="Id_type_material" />
+      </Principal>
+      <Dependent Role="ProductsMaterial">
+        <PropertyRef Name="Id_material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductWorkshop_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductWorkshop" Type="Self.ProductWorkshop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id_product" />
+      </Principal>
+      <Dependent Role="ProductWorkshop">
+        <PropertyRef Name="Id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductWorkshop_Workshop">
+    <End Role="Workshop" Type="Self.Workshop" Multiplicity="0..1" />
+    <End Role="ProductWorkshop" Type="Self.ProductWorkshop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workshop">
+        <PropertyRef Name="Id_workshop" />
+      </Principal>
+      <Dependent Role="ProductWorkshop">
+        <PropertyRef Name="Id_workshop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id_employee" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="Manager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Partners">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="Id_partner" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="Id_partner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id_status" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="Id_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestDetails_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RequestDetails" Type="Self.RequestDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id_product" />
+      </Principal>
+      <Dependent Role="RequestDetails">
+        <PropertyRef Name="Id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestDetails_Request">
+    <End Role="Request" Type="Self.Request" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RequestDetails" Type="Self.RequestDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="Id_request" />
+      </Principal>
+      <Dependent Role="RequestDetails">
+        <PropertyRef Name="Id_request" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleHistory_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SaleHistory" Type="Self.SaleHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id_product" />
+      </Principal>
+      <Dependent Role="SaleHistory">
+        <PropertyRef Name="Id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleHistory_SalePoint">
+    <End Role="SalePoint" Type="Self.SalePoint" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SaleHistory" Type="Self.SaleHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalePoint">
+        <PropertyRef Name="Id_point" />
+      </Principal>
+      <Dependent Role="SaleHistory">
+        <PropertyRef Name="Id_point" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalePoint_Partners">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SalePoint" Type="Self.SalePoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="Id_partner" />
+      </Principal>
+      <Dependent Role="SalePoint">
+        <PropertyRef Name="Id_partner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workshop_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Workshop" Type="Self.Workshop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id_employee" />
+      </Principal>
+      <Dependent Role="Workshop">
+        <PropertyRef Name="Id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workshop_TypeWorkshop">
+    <End Role="TypeWorkshop" Type="Self.TypeWorkshop" Multiplicity="0..1" />
+    <End Role="Workshop" Type="Self.Workshop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeWorkshop">
+        <PropertyRef Name="Id_type_workshop" />
+      </Principal>
+      <Dependent Role="Workshop">
+        <PropertyRef Name="Id_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Хранилище ComfortModelContainer">
+    <EntitySet Name="DiscountPartners" EntityType="Self.DiscountPartners" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FamilyStatus" EntityType="Self.FamilyStatus" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Health" EntityType="Self.Health" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Logins" EntityType="Self.Logins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Partners" EntityType="Self.Partners" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductsMaterial" EntityType="Self.ProductsMaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductType" EntityType="Self.ProductType" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ProductWorkshop" EntityType="Self.ProductWorkshop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Request" EntityType="Self.Request" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="RequestDetails" EntityType="Self.RequestDetails" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SaleHistory" EntityType="Self.SaleHistory" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SalePoint" EntityType="Self.SalePoint" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SizeUpakovka" EntityType="Self.SizeUpakovka" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Status" EntityType="Self.Status" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeMaterial" EntityType="Self.TypeMaterial" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeOfBusiness" EntityType="Self.TypeOfBusiness" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TypeWorkshop" EntityType="Self.TypeWorkshop" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Workshop" EntityType="Self.Workshop" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_DiscountPartners_Partners" Association="Self.FK_DiscountPartners_Partners">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="DiscountPartners" EntitySet="DiscountPartners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_FamilyStatus" Association="Self.FK_Employee_FamilyStatus">
+      <End Role="FamilyStatus" EntitySet="FamilyStatus" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Health" Association="Self.FK_Employee_Health">
+      <End Role="Health" EntitySet="Health" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Logins_Employee" Association="Self.FK_Logins_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Logins" EntitySet="Logins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_TypeOfBusiness" Association="Self.FK_Partners_TypeOfBusiness">
+      <End Role="TypeOfBusiness" EntitySet="TypeOfBusiness" />
+      <End Role="Partners" EntitySet="Partners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductType" Association="Self.FK_Products_ProductType">
+      <End Role="ProductType" EntitySet="ProductType" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_SizeUpakovka" Association="Self.FK_Products_SizeUpakovka">
+      <End Role="SizeUpakovka" EntitySet="SizeUpakovka" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsMaterial_Products" Association="Self.FK_ProductsMaterial_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductsMaterial" EntitySet="ProductsMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsMaterial_TypeMaterial" Association="Self.FK_ProductsMaterial_TypeMaterial">
+      <End Role="TypeMaterial" EntitySet="TypeMaterial" />
+      <End Role="ProductsMaterial" EntitySet="ProductsMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductWorkshop_Products" Association="Self.FK_ProductWorkshop_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductWorkshop" EntitySet="ProductWorkshop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductWorkshop_Workshop" Association="Self.FK_ProductWorkshop_Workshop">
+      <End Role="Workshop" EntitySet="Workshop" />
+      <End Role="ProductWorkshop" EntitySet="ProductWorkshop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Employee" Association="Self.FK_Request_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Partners" Association="Self.FK_Request_Partners">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Status" Association="Self.FK_Request_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestDetails_Products" Association="Self.FK_RequestDetails_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="RequestDetails" EntitySet="RequestDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestDetails_Request" Association="Self.FK_RequestDetails_Request">
+      <End Role="Request" EntitySet="Request" />
+      <End Role="RequestDetails" EntitySet="RequestDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleHistory_Products" Association="Self.FK_SaleHistory_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="SaleHistory" EntitySet="SaleHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleHistory_SalePoint" Association="Self.FK_SaleHistory_SalePoint">
+      <End Role="SalePoint" EntitySet="SalePoint" />
+      <End Role="SaleHistory" EntitySet="SaleHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalePoint_Partners" Association="Self.FK_SalePoint_Partners">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="SalePoint" EntitySet="SalePoint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workshop_Employee" Association="Self.FK_Workshop_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Workshop" EntitySet="Workshop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workshop_TypeWorkshop" Association="Self.FK_Workshop_TypeWorkshop">
+      <End Role="TypeWorkshop" EntitySet="TypeWorkshop" />
+      <End Role="Workshop" EntitySet="Workshop" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

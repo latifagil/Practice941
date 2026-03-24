@@ -1,0 +1,657 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ComfortModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="DiscountPartners">
+    <Key>
+      <PropertyRef Name="Id_discount" />
+    </Key>
+    <Property Name="Id_discount" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_partner" Type="Int32" />
+    <Property Name="TotalSalesValue" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Discount" Type="Decimal" Precision="3" Scale="2" />
+    <Property Name="CalculationDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Partners" Relationship="Self.FK_DiscountPartners_Partners" FromRole="DiscountPartners" ToRole="Partners" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Id_employee" />
+    </Key>
+    <Property Name="Id_employee" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Patronumic" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Birthday" Type="DateTime" Precision="0" />
+    <Property Name="PassportSeria" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PassportNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="BankDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Id_family" Type="Int32" />
+    <Property Name="Id_health" Type="Int32" />
+    <Property Name="Id_role" Type="Int32" />
+    <NavigationProperty Name="FamilyStatus" Relationship="Self.FK_Employee_FamilyStatus" FromRole="Employee" ToRole="FamilyStatus" />
+    <NavigationProperty Name="Health" Relationship="Self.FK_Employee_Health" FromRole="Employee" ToRole="Health" />
+    <NavigationProperty Name="Role" Relationship="Self.FK_Employee_Role" FromRole="Employee" ToRole="Role" />
+    <NavigationProperty Name="Logins" Relationship="Self.FK_Logins_Employee" FromRole="Employee" ToRole="Logins" />
+    <NavigationProperty Name="Request" Relationship="Self.FK_Request_Employee" FromRole="Employee" ToRole="Request" />
+    <NavigationProperty Name="Workshop" Relationship="Self.FK_Workshop_Employee" FromRole="Employee" ToRole="Workshop" />
+  </EntityType>
+  <EntityType Name="FamilyStatus">
+    <Key>
+      <PropertyRef Name="Id_status" />
+    </Key>
+    <Property Name="Id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NmaeStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_FamilyStatus" FromRole="FamilyStatus" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Health">
+    <Key>
+      <PropertyRef Name="Id_health" />
+    </Key>
+    <Property Name="Id_health" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameHealth" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Health" FromRole="Health" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Logins">
+    <Key>
+      <PropertyRef Name="Id_login" />
+    </Key>
+    <Property Name="Id_login" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Login" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Id_user" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Logins_Employee" FromRole="Logins" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="Partners">
+    <Key>
+      <PropertyRef Name="Id_partner" />
+    </Key>
+    <Property Name="Id_partner" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NamePartner" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Id_type" Type="Int32" />
+    <Property Name="UrAdress" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="INN" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="SurnameDirector" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NameDirector" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="PatronumicDirector" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Logo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Raiting" Type="Decimal" Precision="5" Scale="2" />
+    <NavigationProperty Name="DiscountPartners" Relationship="Self.FK_DiscountPartners_Partners" FromRole="Partners" ToRole="DiscountPartners" />
+    <NavigationProperty Name="TypeOfBusiness" Relationship="Self.FK_Partners_TypeOfBusiness" FromRole="Partners" ToRole="TypeOfBusiness" />
+    <NavigationProperty Name="Request" Relationship="Self.FK_Request_Partners" FromRole="Partners" ToRole="Request" />
+    <NavigationProperty Name="SalePoint" Relationship="Self.FK_SalePoint_Partners" FromRole="Partners" ToRole="SalePoint" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Id_product" />
+    </Key>
+    <Property Name="Id_product" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Articul" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="NameProduct" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="MinPrice" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Id_size" Type="Int32" />
+    <Property Name="WeightNETTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="WeightBRUTTO" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CostPrice" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="Id_type" Type="Int32" />
+    <NavigationProperty Name="ProductType" Relationship="Self.FK_Products_ProductType" FromRole="Products" ToRole="ProductType" />
+    <NavigationProperty Name="SizeUpakovka" Relationship="Self.FK_Products_SizeUpakovka" FromRole="Products" ToRole="SizeUpakovka" />
+    <NavigationProperty Name="ProductsMaterial" Relationship="Self.FK_ProductsMaterial_Products" FromRole="Products" ToRole="ProductsMaterial" />
+    <NavigationProperty Name="ProductWorkshop" Relationship="Self.FK_ProductWorkshop_Products" FromRole="Products" ToRole="ProductWorkshop" />
+    <NavigationProperty Name="RequestDetails" Relationship="Self.FK_RequestDetails_Products" FromRole="Products" ToRole="RequestDetails" />
+    <NavigationProperty Name="SaleHistory" Relationship="Self.FK_SaleHistory_Products" FromRole="Products" ToRole="SaleHistory" />
+  </EntityType>
+  <EntityType Name="ProductsMaterial">
+    <Key>
+      <PropertyRef Name="Id_prodmaterial" />
+    </Key>
+    <Property Name="Id_prodmaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_material" Type="Int32" />
+    <Property Name="Id_product" Type="Int32" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductsMaterial_Products" FromRole="ProductsMaterial" ToRole="Products" />
+    <NavigationProperty Name="TypeMaterial" Relationship="Self.FK_ProductsMaterial_TypeMaterial" FromRole="ProductsMaterial" ToRole="TypeMaterial" />
+  </EntityType>
+  <EntityType Name="ProductType">
+    <Key>
+      <PropertyRef Name="Id_prodtype" />
+    </Key>
+    <Property Name="Id_prodtype" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameProdType" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Coefficient" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_ProductType" FromRole="ProductType" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="ProductWorkshop">
+    <Key>
+      <PropertyRef Name="Id_prodwork" />
+    </Key>
+    <Property Name="Id_prodwork" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_product" Type="Int32" />
+    <Property Name="Id_workshop" Type="Int32" />
+    <Property Name="TimeMake" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_ProductWorkshop_Products" FromRole="ProductWorkshop" ToRole="Products" />
+    <NavigationProperty Name="Workshop" Relationship="Self.FK_ProductWorkshop_Workshop" FromRole="ProductWorkshop" ToRole="Workshop" />
+  </EntityType>
+  <EntityType Name="Request">
+    <Key>
+      <PropertyRef Name="Id_request" />
+    </Key>
+    <Property Name="Id_request" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_partner" Type="Int32" />
+    <Property Name="Manager" Type="Int32" />
+    <Property Name="RequestDate" Type="DateTime" Precision="3" />
+    <Property Name="Id_status" Type="Int32" />
+    <Property Name="TotalAmountReq" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Request_Employee" FromRole="Request" ToRole="Employee" />
+    <NavigationProperty Name="Partners" Relationship="Self.FK_Request_Partners" FromRole="Request" ToRole="Partners" />
+    <NavigationProperty Name="Status" Relationship="Self.FK_Request_Status" FromRole="Request" ToRole="Status" />
+    <NavigationProperty Name="RequestDetails" Relationship="Self.FK_RequestDetails_Request" FromRole="Request" ToRole="RequestDetails" />
+  </EntityType>
+  <EntityType Name="RequestDetails">
+    <Key>
+      <PropertyRef Name="Id_detailsreq" />
+    </Key>
+    <Property Name="Id_detailsreq" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_request" Type="Int32" />
+    <Property Name="Id_product" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_RequestDetails_Products" FromRole="RequestDetails" ToRole="Products" />
+    <NavigationProperty Name="Request" Relationship="Self.FK_RequestDetails_Request" FromRole="RequestDetails" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id_role" />
+    </Key>
+    <Property Name="Id_role" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameRole" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Employee_Role" FromRole="Role" ToRole="Employee" />
+  </EntityType>
+  <EntityType Name="SaleHistory">
+    <Key>
+      <PropertyRef Name="Id_sale" />
+    </Key>
+    <Property Name="Id_sale" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Id_product" Type="Int32" />
+    <Property Name="Quantity" Type="Int32" />
+    <Property Name="Id_point" Type="Int32" />
+    <Property Name="Amount" Type="Decimal" Precision="10" Scale="2" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_SaleHistory_Products" FromRole="SaleHistory" ToRole="Products" />
+    <NavigationProperty Name="SalePoint" Relationship="Self.FK_SaleHistory_SalePoint" FromRole="SaleHistory" ToRole="SalePoint" />
+  </EntityType>
+  <EntityType Name="SalePoint">
+    <Key>
+      <PropertyRef Name="Id_point" />
+    </Key>
+    <Property Name="Id_point" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NamePoint" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="AdressPoint" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Id_partner" Type="Int32" />
+    <NavigationProperty Name="Partners" Relationship="Self.FK_SalePoint_Partners" FromRole="SalePoint" ToRole="Partners" />
+    <NavigationProperty Name="SaleHistory" Relationship="Self.FK_SaleHistory_SalePoint" FromRole="SalePoint" ToRole="SaleHistory" />
+  </EntityType>
+  <EntityType Name="SizeUpakovka">
+    <Key>
+      <PropertyRef Name="Id_size" />
+    </Key>
+    <Property Name="Id_size" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Width" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Height" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Length" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Products_SizeUpakovka" FromRole="SizeUpakovka" ToRole="Products" />
+  </EntityType>
+  <EntityType Name="Status">
+    <Key>
+      <PropertyRef Name="Id_status" />
+    </Key>
+    <Property Name="Id_status" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameStatus" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Request" Relationship="Self.FK_Request_Status" FromRole="Status" ToRole="Request" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="TypeMaterial">
+    <Key>
+      <PropertyRef Name="Id_type_material" />
+    </Key>
+    <Property Name="Id_type_material" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name_material" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="LostProcent" Type="Decimal" Precision="5" Scale="2" />
+    <NavigationProperty Name="ProductsMaterial" Relationship="Self.FK_ProductsMaterial_TypeMaterial" FromRole="TypeMaterial" ToRole="ProductsMaterial" />
+  </EntityType>
+  <EntityType Name="TypeOfBusiness">
+    <Key>
+      <PropertyRef Name="Id_type" />
+    </Key>
+    <Property Name="Id_type" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameBusiness" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Partners" Relationship="Self.FK_Partners_TypeOfBusiness" FromRole="TypeOfBusiness" ToRole="Partners" />
+  </EntityType>
+  <EntityType Name="TypeWorkshop">
+    <Key>
+      <PropertyRef Name="Id_type_workshop" />
+    </Key>
+    <Property Name="Id_type_workshop" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameTypeWorkshop" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Workshop" Relationship="Self.FK_Workshop_TypeWorkshop" FromRole="TypeWorkshop" ToRole="Workshop" />
+  </EntityType>
+  <EntityType Name="Workshop">
+    <Key>
+      <PropertyRef Name="Id_workshop" />
+    </Key>
+    <Property Name="Id_workshop" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NameWorkshop" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="CountPeople" Type="Int32" />
+    <Property Name="Id_type" Type="Int32" />
+    <Property Name="Id_employee" Type="Int32" />
+    <NavigationProperty Name="Employee" Relationship="Self.FK_Workshop_Employee" FromRole="Workshop" ToRole="Employee" />
+    <NavigationProperty Name="ProductWorkshop" Relationship="Self.FK_ProductWorkshop_Workshop" FromRole="Workshop" ToRole="ProductWorkshop" />
+    <NavigationProperty Name="TypeWorkshop" Relationship="Self.FK_Workshop_TypeWorkshop" FromRole="Workshop" ToRole="TypeWorkshop" />
+  </EntityType>
+  <Association Name="FK_DiscountPartners_Partners">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DiscountPartners" Type="Self.DiscountPartners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="Id_partner" />
+      </Principal>
+      <Dependent Role="DiscountPartners">
+        <PropertyRef Name="Id_partner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_FamilyStatus">
+    <End Role="FamilyStatus" Type="Self.FamilyStatus" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="FamilyStatus">
+        <PropertyRef Name="Id_status" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Id_family" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Health">
+    <End Role="Health" Type="Self.Health" Multiplicity="0..1" />
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Health">
+        <PropertyRef Name="Id_health" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Id_health" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Employee_Role">
+    <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Employee" Type="Self.Employee" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id_role" />
+      </Principal>
+      <Dependent Role="Employee">
+        <PropertyRef Name="Id_role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Logins_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Logins" Type="Self.Logins" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id_employee" />
+      </Principal>
+      <Dependent Role="Logins">
+        <PropertyRef Name="Id_user" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id_employee" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="Manager" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workshop_Employee">
+    <End Role="Employee" Type="Self.Employee" Multiplicity="0..1" />
+    <End Role="Workshop" Type="Self.Workshop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Employee">
+        <PropertyRef Name="Id_employee" />
+      </Principal>
+      <Dependent Role="Workshop">
+        <PropertyRef Name="Id_employee" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Partners_TypeOfBusiness">
+    <End Role="TypeOfBusiness" Type="Self.TypeOfBusiness" Multiplicity="0..1" />
+    <End Role="Partners" Type="Self.Partners" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeOfBusiness">
+        <PropertyRef Name="Id_type" />
+      </Principal>
+      <Dependent Role="Partners">
+        <PropertyRef Name="Id_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Partners">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="Id_partner" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="Id_partner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SalePoint_Partners">
+    <End Role="Partners" Type="Self.Partners" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SalePoint" Type="Self.SalePoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Partners">
+        <PropertyRef Name="Id_partner" />
+      </Principal>
+      <Dependent Role="SalePoint">
+        <PropertyRef Name="Id_partner" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_ProductType">
+    <End Role="ProductType" Type="Self.ProductType" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProductType">
+        <PropertyRef Name="Id_prodtype" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Id_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_SizeUpakovka">
+    <End Role="SizeUpakovka" Type="Self.SizeUpakovka" Multiplicity="0..1" />
+    <End Role="Products" Type="Self.Products" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SizeUpakovka">
+        <PropertyRef Name="Id_size" />
+      </Principal>
+      <Dependent Role="Products">
+        <PropertyRef Name="Id_size" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsMaterial_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductsMaterial" Type="Self.ProductsMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id_product" />
+      </Principal>
+      <Dependent Role="ProductsMaterial">
+        <PropertyRef Name="Id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductWorkshop_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductWorkshop" Type="Self.ProductWorkshop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id_product" />
+      </Principal>
+      <Dependent Role="ProductWorkshop">
+        <PropertyRef Name="Id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestDetails_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RequestDetails" Type="Self.RequestDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id_product" />
+      </Principal>
+      <Dependent Role="RequestDetails">
+        <PropertyRef Name="Id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleHistory_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SaleHistory" Type="Self.SaleHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Id_product" />
+      </Principal>
+      <Dependent Role="SaleHistory">
+        <PropertyRef Name="Id_product" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductsMaterial_TypeMaterial">
+    <End Role="TypeMaterial" Type="Self.TypeMaterial" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="ProductsMaterial" Type="Self.ProductsMaterial" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeMaterial">
+        <PropertyRef Name="Id_type_material" />
+      </Principal>
+      <Dependent Role="ProductsMaterial">
+        <PropertyRef Name="Id_material" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProductWorkshop_Workshop">
+    <End Role="Workshop" Type="Self.Workshop" Multiplicity="0..1" />
+    <End Role="ProductWorkshop" Type="Self.ProductWorkshop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Workshop">
+        <PropertyRef Name="Id_workshop" />
+      </Principal>
+      <Dependent Role="ProductWorkshop">
+        <PropertyRef Name="Id_workshop" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Request_Status">
+    <End Role="Status" Type="Self.Status" Multiplicity="0..1" />
+    <End Role="Request" Type="Self.Request" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Status">
+        <PropertyRef Name="Id_status" />
+      </Principal>
+      <Dependent Role="Request">
+        <PropertyRef Name="Id_status" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_RequestDetails_Request">
+    <End Role="Request" Type="Self.Request" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="RequestDetails" Type="Self.RequestDetails" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Request">
+        <PropertyRef Name="Id_request" />
+      </Principal>
+      <Dependent Role="RequestDetails">
+        <PropertyRef Name="Id_request" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_SaleHistory_SalePoint">
+    <End Role="SalePoint" Type="Self.SalePoint" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SaleHistory" Type="Self.SaleHistory" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SalePoint">
+        <PropertyRef Name="Id_point" />
+      </Principal>
+      <Dependent Role="SaleHistory">
+        <PropertyRef Name="Id_point" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Workshop_TypeWorkshop">
+    <End Role="TypeWorkshop" Type="Self.TypeWorkshop" Multiplicity="0..1" />
+    <End Role="Workshop" Type="Self.Workshop" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TypeWorkshop">
+        <PropertyRef Name="Id_type_workshop" />
+      </Principal>
+      <Dependent Role="Workshop">
+        <PropertyRef Name="Id_type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ComfortEntities1" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="DiscountPartners" EntityType="Self.DiscountPartners" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" />
+    <EntitySet Name="FamilyStatus" EntityType="Self.FamilyStatus" />
+    <EntitySet Name="Health" EntityType="Self.Health" />
+    <EntitySet Name="Logins" EntityType="Self.Logins" />
+    <EntitySet Name="Partners" EntityType="Self.Partners" />
+    <EntitySet Name="Products" EntityType="Self.Products" />
+    <EntitySet Name="ProductsMaterial" EntityType="Self.ProductsMaterial" />
+    <EntitySet Name="ProductType" EntityType="Self.ProductType" />
+    <EntitySet Name="ProductWorkshop" EntityType="Self.ProductWorkshop" />
+    <EntitySet Name="Request" EntityType="Self.Request" />
+    <EntitySet Name="RequestDetails" EntityType="Self.RequestDetails" />
+    <EntitySet Name="Role" EntityType="Self.Role" />
+    <EntitySet Name="SaleHistory" EntityType="Self.SaleHistory" />
+    <EntitySet Name="SalePoint" EntityType="Self.SalePoint" />
+    <EntitySet Name="SizeUpakovka" EntityType="Self.SizeUpakovka" />
+    <EntitySet Name="Status" EntityType="Self.Status" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="TypeMaterial" EntityType="Self.TypeMaterial" />
+    <EntitySet Name="TypeOfBusiness" EntityType="Self.TypeOfBusiness" />
+    <EntitySet Name="TypeWorkshop" EntityType="Self.TypeWorkshop" />
+    <EntitySet Name="Workshop" EntityType="Self.Workshop" />
+    <AssociationSet Name="FK_DiscountPartners_Partners" Association="Self.FK_DiscountPartners_Partners">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="DiscountPartners" EntitySet="DiscountPartners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_FamilyStatus" Association="Self.FK_Employee_FamilyStatus">
+      <End Role="FamilyStatus" EntitySet="FamilyStatus" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Health" Association="Self.FK_Employee_Health">
+      <End Role="Health" EntitySet="Health" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Employee_Role" Association="Self.FK_Employee_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="Employee" EntitySet="Employee" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Logins_Employee" Association="Self.FK_Logins_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Logins" EntitySet="Logins" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Employee" Association="Self.FK_Request_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workshop_Employee" Association="Self.FK_Workshop_Employee">
+      <End Role="Employee" EntitySet="Employee" />
+      <End Role="Workshop" EntitySet="Workshop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Partners_TypeOfBusiness" Association="Self.FK_Partners_TypeOfBusiness">
+      <End Role="TypeOfBusiness" EntitySet="TypeOfBusiness" />
+      <End Role="Partners" EntitySet="Partners" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Partners" Association="Self.FK_Request_Partners">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SalePoint_Partners" Association="Self.FK_SalePoint_Partners">
+      <End Role="Partners" EntitySet="Partners" />
+      <End Role="SalePoint" EntitySet="SalePoint" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_ProductType" Association="Self.FK_Products_ProductType">
+      <End Role="ProductType" EntitySet="ProductType" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_SizeUpakovka" Association="Self.FK_Products_SizeUpakovka">
+      <End Role="SizeUpakovka" EntitySet="SizeUpakovka" />
+      <End Role="Products" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsMaterial_Products" Association="Self.FK_ProductsMaterial_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductsMaterial" EntitySet="ProductsMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductWorkshop_Products" Association="Self.FK_ProductWorkshop_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="ProductWorkshop" EntitySet="ProductWorkshop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestDetails_Products" Association="Self.FK_RequestDetails_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="RequestDetails" EntitySet="RequestDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleHistory_Products" Association="Self.FK_SaleHistory_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="SaleHistory" EntitySet="SaleHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductsMaterial_TypeMaterial" Association="Self.FK_ProductsMaterial_TypeMaterial">
+      <End Role="TypeMaterial" EntitySet="TypeMaterial" />
+      <End Role="ProductsMaterial" EntitySet="ProductsMaterial" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProductWorkshop_Workshop" Association="Self.FK_ProductWorkshop_Workshop">
+      <End Role="Workshop" EntitySet="Workshop" />
+      <End Role="ProductWorkshop" EntitySet="ProductWorkshop" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Request_Status" Association="Self.FK_Request_Status">
+      <End Role="Status" EntitySet="Status" />
+      <End Role="Request" EntitySet="Request" />
+    </AssociationSet>
+    <AssociationSet Name="FK_RequestDetails_Request" Association="Self.FK_RequestDetails_Request">
+      <End Role="Request" EntitySet="Request" />
+      <End Role="RequestDetails" EntitySet="RequestDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_SaleHistory_SalePoint" Association="Self.FK_SaleHistory_SalePoint">
+      <End Role="SalePoint" EntitySet="SalePoint" />
+      <End Role="SaleHistory" EntitySet="SaleHistory" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Workshop_TypeWorkshop" Association="Self.FK_Workshop_TypeWorkshop">
+      <End Role="TypeWorkshop" EntitySet="TypeWorkshop" />
+      <End Role="Workshop" EntitySet="Workshop" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
